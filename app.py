@@ -1,15 +1,14 @@
-<<<<<<< HEAD
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, send_from_directory, render_template
 import random
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="static", static_url_path="")
 
-# Chatbot responses (Basic AI logic)
+# Chatbot responses (Version 2.0 - Improved AI logic)
 responses = {
-    "hello": ["Hello! How can I assist you?", "Hi there! How's your day going?"],
-    "how are you": ["I'm just a chatbot, but I'm doing great!", "I'm here to help!"],
-    "bye": ["Goodbye! Have a great day!", "See you next time!"],
-    "default": ["I'm not sure I understand. Can you rephrase?"]
+    "hello": ["Hello! How can I assist you today?", "Hi there! What brings you here?"],
+    "how are you": ["I'm an AI, but I'm here to help!", "I'm always ready to assist you!"],
+    "bye": ["Goodbye! Take care!", "See you next time! Have a great day!"],
+    "default": ["I'm not sure I understand. Could you rephrase that?"]
 }
 
 def get_response(user_input):
@@ -19,38 +18,16 @@ def get_response(user_input):
             return random.choice(responses[key])
     return random.choice(responses["default"])
 
-# Home Route (Loads the Chat UI)
-@app.route("/")
-def home():
-    return render_template("index.html")  # Loads UI (Make sure index.html exists)
-
-# Chatbot API Route
-=======
-from flask import Flask, request, jsonify, send_from_directory
-
-app = Flask(__name__, static_folder="static", static_url_path="")
-
 @app.route("/")
 def home():
     return send_from_directory("static", "index.html")
 
->>>>>>> 95850a48248e1d54ef7363a4afe0b6e36aeea27d
 @app.route("/chatbot", methods=["POST"])
 def chatbot():
     data = request.get_json()
     user_message = data.get("message", "")
-<<<<<<< HEAD
     bot_response = get_response(user_message)
     return jsonify({"response": bot_response})
 
 if __name__ == "__main__":
-    app.run(debug=True)
-
-
-=======
-    response_message = f"You said: {user_message}"
-    return jsonify({"response": response_message})
-
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=10000)  # Ensure Render uses port 10000
->>>>>>> 95850a48248e1d54ef7363a4afe0b6e36aeea27d
+    app.run(host="0.0.0.0", port=10000, debug=True)

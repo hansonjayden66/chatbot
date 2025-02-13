@@ -3,18 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jayden AI - Chat</title>
+    <title>Cyber Chat</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="chat-container">
-        <h2>Jayden AI</h2>
-        <div id="chatbox">
-            <p class="bot-message">Hello! I'm Jayden AI. How can I help you?</p>
+        <div class="title-bar">Cyber Chat</div>
+        <div class="chat-box" id="chat-box">
+            <div class="bot-message">Welcome! Let's chat.</div>
         </div>
-        <input type="text" id="userInput" placeholder="Type your message..." />
-        <button onclick="sendMessage()">Send</button>
+        <div class="chat-input">
+            <input type="text" id="user-input" placeholder="Type a message..." autocomplete="off">
+            <button onclick="sendMessage()">Send</button>
+        </div>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
